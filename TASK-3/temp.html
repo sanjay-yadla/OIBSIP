@@ -1,0 +1,93 @@
+<html>
+    <style>
+        body {
+font-family: Lucida Sans;
+text-align: center;
+margin: 50px;
+background-color:#438980 ;
+padding:10px;
+}
+#converter {
+width: 300px;
+margin: 0 auto;
+border-radius:8px;
+max-width:450px;
+min-height:70vh;
+background: white;
+}
+input {
+width: calc(100% - 22px);
+padding: 10px;
+margin-top: 10px;
+margin-bottom: 10px;
+transition: border-color 0.3s ease;
+border: 1px solid #000000;
+border-radius: 5px;
+}
+button {
+margin-top: 10px;
+width: 95%;
+padding: 10px;
+background-color:black;
+color: white;
+border: none;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+button:hover {
+background-color: green;
+}
+#result {
+margin-top: 20px;
+font-weight: bold;
+transition: opacity 0.3s ease;
+}
+input[type="radio"] {
+margin: 5px;
+}
+    </style>
+<head>
+<title>Temperature Converter</title>
+</head>
+<body>
+<div id="converter">
+<h1>TEMPERATURE CONVERTER</h1>
+<h3>(Celsius-Fahrenheit-Kelvin)</h3>
+<form onsubmit="return false">
+<label for="inputTemp">Enter Temperature:</label>
+<input type="number" id="inputTemp" placeholder="Enter temperature" required>
+<label>Select Input Unit:</label>
+<label><input type="radio" name="unit" value="celsius" checked>Celsius</label>
+<label><input type="radio" name="unit" value="fahrenheit">Fahrenheit</label>
+<label><input type="radio" name="unit" value="kelvin">Kelvin</label>
+<button onclick="convertTemperature()">CONVERT</button>
+<div id="result"></div>
+</form>
+</div>
+<script>
+function convertTemperature() {
+var inputTemp = document.getElementById('inputTemp').value;
+var unit = document.querySelector('input[name="unit"]:checked').value;
+var resultDiv = document.getElementById('result');
+var result;
+var result1;
+if (unit === 'celsius') {
+result = (inputTemp * 9/5) + 32;
+result1 = parseFloat(inputTemp)+273.15;
+resultDiv.innerHTML = inputTemp + ' Celsius = ' + result + ' Fahrenheit and ' + result1 + 'Kelvin';
+}
+else if (unit === 'fahrenheit') {
+result = (inputTemp - 32) * 5/9;
+result1 = parseFloat(result)+273.15;
+resultDiv.innerHTML = inputTemp + ' Fahrenheit = ' + result + ' Celsius and ' + result1 + 'Kelvin';
+}
+else if (unit === 'kelvin') {
+result = parseFloat(inputTemp) - 273.15;
+result1= (result * 9/5)+32;
+resultDiv.innerHTML = inputTemp + ' Kelvin = ' + result + ' Celsius  and ' + result1 + 'Fahrenheit';
+}
+resultDiv.style.opacity = '1';
+}
+</script>
+</body>
+</html>
